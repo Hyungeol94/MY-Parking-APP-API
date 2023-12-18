@@ -146,9 +146,9 @@ export const initData = {
       buyQuantity: 0, // 구매완료된것 : 0
       mainImages: [
         {
-          url: `/files/sample-parking6.jpg`,
-          fileName: "sample-parking6.jpg",
-          orgName: "주차장6.jpg",
+          url: `/files/sample-parking6.png`,
+          fileName: "sample-parking6.png",
+          orgName: "주차장6.png",
         },
       ],
       content: `주차장이 협소하지만 위치가 좋아요. 자세한 내용은 연락주세요`,
@@ -179,9 +179,9 @@ export const initData = {
       buyQuantity: 0, // 구매완료된것 : 0
       mainImages: [
         {
-          url: `/files/sample-parking4.jpg`,
-          fileName: "sample-parking4.jpg",
-          orgName: "주차장4.jpg",
+          url: `/files/sample-parking4.jpeg`,
+          fileName: "sample-parking4.jpeg",
+          orgName: "주차장4.jpeg",
         },
       ],
       content: `주차장이 협소하지만 위치가 좋아요. 자세한 내용은 연락주세요`,
@@ -212,9 +212,9 @@ export const initData = {
       buyQuantity: 0, // 구매완료된것 : 0
       mainImages: [
         {
-          url: `/files/sample-parking7.jpg`,
-          fileName: "sample-parking7.jpg",
-          orgName: "주차장7.jpg",
+          url: `/files/sample-parking7.png`,
+          fileName: "sample-parking7.png",
+          orgName: "주차장7.png",
         },
       ],
       content: `주차장이 협소하지만 위치가 좋아요. 편하게 문의 주시면 됩니다. 자세한 내용은 연락주세요`,
@@ -245,9 +245,9 @@ export const initData = {
       buyQuantity: 0, // 구매완료된것 : 0
       mainImages: [
         {
-          url: `/files/sample-parking8.jpg`,
-          fileName: "sample-parking8.jpg",
-          orgName: "주차장8.jpg",
+          url: `/files/sample-parking8.png`,
+          fileName: "sample-parking8.png",
+          orgName: "주차장8.png",
         },
       ],
       content: `자세한 내용은 연락주세요. 01033044004`,
@@ -278,9 +278,9 @@ export const initData = {
       buyQuantity: 0, // 구매완료된것 : 0
       mainImages: [
         {
-          url: `/files/sample-parking9.jpg`,
-          fileName: "sample-parking9.jpg",
-          orgName: "주차장9.jpg",
+          url: `/files/sample-parking9.png`,
+          fileName: "sample-parking9.png",
+          orgName: "주차장9.png",
         },
       ],
       content: `역삼역과 가까운 위치에 있습니다. 사실 한달정도 사용하지 않는 기간이 길어질거 같아서 추가 연장도 가능합니다. 문의 주세요`,
