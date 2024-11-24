@@ -44,11 +44,24 @@ npm i
 npm start
 ```
 
+## DB 배포
+* mongodb atlas에 DB 배포하기
+* compass로 DB 접속 테스트
+*  Network Access > Add Ip Address > ALLOW ACCESS FROM ANYWHERE 선택하면 모든 IP에서 DB에 접속 가능
+
+## .env, .env.production 만들기
+* 프로젝트 루트에 각 파일 추가
+* .env 파일에 db접속에 필요한 환경 변수 세팅하기
+* .env.production에는 내가 만든 DB 정보로 수정
+ 
 ## DB 초기화
 * 기본으로 제공되는 샘플 데이터로 DB 초기화
 ```
-npm run dbinit
+cd api
+npm run dbinit:prod:team
 ```
+## API 서버 배포하기
+* koyeb 이용
 
 ## API 서버 테스트
 ### 자체 제공 API 문서
