@@ -3,7 +3,7 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
-import swaggerFile from './swagger-output.json' assert {type: 'json'};
+import swaggerFile from './swagger-output.json' with {type: 'json'};
 import logger from './utils/logger.js';
 import indexRouter from './routes/index.js';
 import timer from 'node:timers/promises';
