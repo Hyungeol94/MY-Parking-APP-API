@@ -14,6 +14,7 @@
   },
   "scripts": {
     "prestart": "node ./swagger.js",
+    "test": "node --test",
     "start": "cross-env NODE_ENV=production node -r dotenv/config ./bin/www-prod.js",
     "dev": "cross-env NODE_ENV=development node -r dotenv/config ./bin/www-https.js",
     "local": "cross-env NODE_ENV=local node -r dotenv/config ./bin/www-https.js",

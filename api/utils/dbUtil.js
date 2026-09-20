@@ -3,6 +3,7 @@ import { db as DBConfig } from '../config/index.js';
 import { MongoClient } from 'mongodb';
 import _ from 'lodash';
 import codeUtil from '#utils/codeUtil.js';
+import initializeDatabase from '#utils/dbMigrationUtil.js';
 
 var db;
 
@@ -18,12 +19,13 @@ if(process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'developmen
   url = `${DBConfig.protocol}://${DBConfig.host}:${DBConfig.port}`;
 }
 
-logger.log(`DB 접속: ${url}`);
+const safeConnectionTarget = `${DBConfig.protocol}://${DBConfig.host}${DBConfig.port ? `:${DBConfig.port}` : ''}/${DBConfig.database}`;
+logger.log(`DB 접속: ${safeConnectionTarget}`);
 const client = new MongoClient(url);
 
 try{
   await client.connect();
-  logger.info(`DB 접속 성공: ${url}`);
+  logger.info(`DB 접속 성공: ${safeConnectionTarget}`);
   db = client.db(DBConfig.database);
   db.user = db.collection('user');
   db.product = db.collection('product');
@@ -35,6 +37,14 @@ try{
   db.bookmark = db.collection('bookmark');
   db.config = db.collection('config');
   db.post = db.collection('post');
+
+  try{
+    const migration = await initializeDatabase(db);
+    logger.info('DB 마이그레이션 완료', migration);
+  }catch(err){
+    // 마이그레이션이 실패해도 legacy extra.lat/lng 조회로 서비스는 계속 동작한다.
+    logger.error('DB 마이그레이션 실패. legacy 위치 조회를 유지합니다.', err);
+  }
 
   await codeUtil.initCode(db);
 

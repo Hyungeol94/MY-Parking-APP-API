@@ -9,6 +9,7 @@ import { GridFSBucket } from 'mongodb';
 
 import logger from '../utils/logger.js';
 import db, { getClient } from '../utils/dbUtil.js';
+import initializeDatabase from '../utils/dbMigrationUtil.js';
 
 const sampleFolder = process.argv[2] || 'ins';
 
@@ -64,8 +65,10 @@ logger.info('DB 삭제.');
 
 import(`./${sampleFolder}/dbinit-data.js`).then(async ({ initData }) => {
   await initDB(initData);
+  // dbUtil 초기화 뒤 dropDatabase()를 실행하므로, 새 sample 데이터에도
+  // 위치 백필과 인덱스를 다시 적용한 다음 연결을 닫는다.
+  await initializeDatabase(db);
   getClient().close();
   logger.info('DB 초기화 완료.');
 });
-
 

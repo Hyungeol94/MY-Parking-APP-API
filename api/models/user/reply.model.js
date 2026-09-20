@@ -74,6 +74,44 @@ const reply = {
     return list;
   },
 
+  // 상품별 후기 수 조회
+  async countByProductIds(productIds=[]){
+    logger.trace(arguments);
+    if(productIds.length === 0){
+      return new Map();
+    }
+
+    const counts = await db.reply.aggregate([
+      { $match: { product_id: { $in: productIds } } },
+      {
+        $lookup: {
+          from: 'product',
+          localField: 'product_id',
+          foreignField: '_id',
+          as: 'product'
+        }
+      },
+      { $unwind: '$product' },
+      {
+        $lookup: {
+          from: 'user',
+          localField: 'user_id',
+          foreignField: '_id',
+          as: 'user'
+        }
+      },
+      { $unwind: '$user' },
+      {
+        $group: {
+          _id: '$product_id',
+          count: { $sum: 1 }
+        }
+      }
+    ]).toArray();
+
+    return new Map(counts.map(item => [String(item._id), item.count]));
+  },
+
   // 후기만 조회
   async findById(_id){
     logger.trace(arguments);

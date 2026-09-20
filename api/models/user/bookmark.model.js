@@ -60,6 +60,26 @@ const bookmark = {
     return list;
   },
 
+  // 상품별 북마크 수 조회
+  async countByProductIds(productIds=[]){
+    logger.trace(arguments);
+    if(productIds.length === 0){
+      return new Map();
+    }
+
+    const counts = await db.bookmark.aggregate([
+      { $match: { product_id: { $in: productIds } } },
+      {
+        $group: {
+          _id: '$product_id',
+          count: { $sum: 1 }
+        }
+      }
+    ]).toArray();
+
+    return new Map(counts.map(item => [String(item._id), item.count]));
+  },
+
   // 지정한 검색 조건으로 북마크 한건 조회
   async findOneBy(query){
     logger.trace(arguments);

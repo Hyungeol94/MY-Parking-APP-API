@@ -165,6 +165,16 @@ router.post('/', [
   body('name').trim().isLength({ min: 2 }).withMessage('상품명은 2글자 이상 입력해야 합니다.'),
   body('mainImages').isArray().withMessage('메인 이미지는 배열로 전달해야 합니다.'),
   body('content').trim().isLength({ min: 10 }).withMessage('상품 설명은 10글자 이상 입력해야 합니다.'),
+  body('extra.lat')
+    .optional({ values: 'null' })
+    .isFloat({ min: -90, max: 90 })
+    .withMessage('위도는 -90 이상 90 이하의 숫자여야 합니다.')
+    .toFloat(),
+  body('extra.lng')
+    .optional({ values: 'null' })
+    .isFloat({ min: -180, max: 180 })
+    .withMessage('경도는 -180 이상 180 이하의 숫자여야 합니다.')
+    .toFloat(),
 ], validator.checkResult, async function(req, res, next) {
 
   /*
@@ -238,6 +248,16 @@ router.patch('/:_id', [
   body('name').optional().trim().isLength({ min: 2 }).withMessage('상품명은 2글자 이상 입력해야 합니다.'),
   body('mainImages').optional().isArray().withMessage('메인 이미지는 배열로 전달해야 합니다.'),
   body('content').optional().trim().isLength({ min: 10 }).withMessage('상품 설명은 10글자 이상 입력해야 합니다.'),
+  body('extra.lat')
+    .optional({ values: 'null' })
+    .isFloat({ min: -90, max: 90 })
+    .withMessage('위도는 -90 이상 90 이하의 숫자여야 합니다.')
+    .toFloat(),
+  body('extra.lng')
+    .optional({ values: 'null' })
+    .isFloat({ min: -180, max: 180 })
+    .withMessage('경도는 -180 이상 180 이하의 숫자여야 합니다.')
+    .toFloat(),
 ], validator.checkResult, async function(req, res, next) {
 
   /*
